@@ -78,7 +78,6 @@ $(".filters__hide").on("click", function() {
 
 /*==========hint=============*/
 $(".workers__stat").hover(function() {
-	$(this).find(".hint").fadeToggle();
 	if ($(window).width() > 1024){
         $(this).find(".hint").fadeToggle();
     };
