@@ -281,6 +281,7 @@
 			span {
 				&:first-child {
 					background-color: $blue;
+					border-color: $blue;
 					&:after {
 						opacity: 1;
 					}

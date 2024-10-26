@@ -599,7 +599,8 @@
 .checkbox input {
   display: none; }
   .checkbox input:checked + label span:first-child {
-    background-color: #114FD3; }
+    background-color: #114FD3;
+    border-color: #114FD3; }
     .checkbox input:checked + label span:first-child:after {
       opacity: 1; }
 
