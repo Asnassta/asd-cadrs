@@ -1,6 +1,8 @@
 @import 'fonts.scss';
 @import 'variables.scss';
 @import 'page.scss';
+@import 'form.scss';
+@import 'popup.scss';
 
 /*=========Reset==========*/
 *{
@@ -78,6 +80,18 @@ body.hidden {
 	background: rgba(59, 76, 92, 0.3);
 }
 
+.mb-16 {
+	margin-bottom: 16px;
+}
+
+.title {
+	font-family: $ff;
+	font-size: 17.72px;
+	font-weight: 700;
+	color: $bl;
+	line-height: $lh;
+}
+
 .title-small {
 	font-family: $ff;
 	font-size: 15.75px;
@@ -100,6 +114,7 @@ body.hidden {
 	font-weight: 500;
 	color: $wh;
 	line-height: $lh;
+	text-align: center;
 	img {
 		margin-right: 4px;
 	}
@@ -107,6 +122,7 @@ body.hidden {
 		width: 16px;
 		height: 16px;
 		stroke: $wh;
+		fill: none;
 		margin-right: 4px;
 	}
 	&:hover {
@@ -149,6 +165,7 @@ body.hidden {
 	font-weight: 500;
 	color: $blue;
 	line-height: $lh;
+	text-align: center;
 	img {
 		margin-right: 4px;
 	}
@@ -156,6 +173,7 @@ body.hidden {
 		width: 16px;
 		height: 16px;
 		stroke: $blue;
+		fill: none;
 		margin-right: 4px;
 	}
 	&:hover {
@@ -276,7 +294,8 @@ body.hidden {
 		position: absolute;
 		top: calc(100% + 8px);
 		right: 0;
-		min-width: 185px;
+		min-width: 186px;
+		text-align: left;
 	}
 	&__item {
 		display: flex;
@@ -412,16 +431,30 @@ body.hidden {
 
 /*===========Section===========*/
 .section {
+	&.hide {
+		.section__sidebar {
+			width: 24px;
+			padding-right: 8px;
+		}
+		.section__content {
+			width: calc(100% - 24px);
+		}
+	}
 	&__inner {
 		display: flex;
 	}
 	&__sidebar {
 		width: 17.6%;
 		padding-right: 16px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		transition: all .4s linear;
 	}
 	&__content {
 		width: 82.4%;
 		position: relative;
+		transition: all .4s linear;
 		&_sc {
 			.person {
 				width: 100%;
@@ -480,8 +513,7 @@ body.hidden {
 		}
 	}
 	&__num {
-		width: 24px;
-		flex: 0 0 24px;
+		min-width: 24px;
 		@include text;
 		color: $bl;
 	}
@@ -542,11 +574,27 @@ body.hidden {
 /*===========Person===========*/
 .person {
 	border-radius: 10px;
+	background-color: $wh;
+	box-shadow: 0px 24px 48px 0px rgba(225, 231, 245, 0.4),0px 1px 4px 0px rgb(227, 234, 251);
+	padding: 16px;
+	padding-bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	&_page {
+		height: calc(100vh - 122px);
+		overflow: auto;
+		-ms-overflow-style: none;
+     	scrollbar-width: none;
+     	::-webkit-scrollbar {
+		      width: 0;
+		      height: 0;
+		}
+	}
 	&__inner {
 		background-color: $wh;
 		border-radius: 10px;
-		box-shadow: 0px 24px 48px 0px rgba(225, 231, 245, 0.4),0px 1px 4px 0px rgb(227, 234, 251);
-		padding: 16px;
+		padding-bottom: 0;
 		display: flex;
 	}
 	&__info {
@@ -584,7 +632,7 @@ body.hidden {
 		border-bottom: 1px solid $lgray;
 		&:last-child {
 			margin-bottom: 0;
-			padding-bottom: 0;
+			padding-bottom: 16px;
 			border-bottom: none;
 		}
 	}
@@ -610,6 +658,7 @@ body.hidden {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		padding-bottom: 16px;
 	}
 	&__link {
 		display: inline-flex;
@@ -656,6 +705,9 @@ body.hidden {
 				}
 			}
 		}
+	}
+	&__table {
+		margin-bottom: 14px;
 	}
 }
 /*===========/person===========*/
@@ -709,23 +761,6 @@ body.hidden {
 						right: 16px;
 					}
 				}
-				&.error {
-					input {
-						background-color: $pink;
-					}
-					.form__error {
-						display: block;
-					}
-				}
-			}
-			&__error {
-				display: none;
-				margin-bottom: 4px;
-				font-family: $ff;
-				font-size: 12.33px;
-				font-weight: 400;
-				line-height: 1.3;
-				color: $dred;
 			}
 			&__footer {
 				padding-top: 24px;
@@ -747,78 +782,311 @@ body.hidden {
 }
 /*==========/authorization===========*/
 
-/*===========Form===========*/
-.form {
-	&__description {
-		@include text;
-		color: $gray;
-		margin-bottom: 4px;
-	}
-	&__input {
-		input {
-			display: block;
-			width: 100%;
-			padding: 12px;
-			border-radius: 4px;
-			background: rgb(247, 247, 250);
-			@include text;
-			color: $bl;
-			&::placeholder {
-				opacity: 1;
-				color: $bl;
-			}
-		}
-		&_icon {
-			position: relative;
-			input {
-				padding-right: 36px;
-			}
-		}
-		&-btn {
-			cursor: pointer;
-			position: absolute;
-			top: 50%;
-			right: 12px;
-			transform: translateY(-50%);
-			z-index: 1;
-			transition: all .2s linear;
-			img {
-				transition: all .2s linear;
-			}
-			&:after {
-				content: "";
-				width: 100%;
-				height: 100%;
-				background: url("../images/eye-icon.svg") center no-repeat;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: 1;
-				opacity: 0;
-				transition: all .2s linear;
-			}
-			&.active {
-				img {
-					opacity: 0;
-				}
-				&:after {
-					opacity: 1;
-				}
+
+/*===========Sidemenu========*/
+.sidemenu {
+	&.hide {
+		.sidemenu__icon {
+			svg {
+				stroke: $lgray;
 			}
 		}
 	}
-	&__subtext {
-		@include description;
+	&__item {
+		margin-bottom: 8px;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
-	&__footer {
-		margin-top: 16px;
-		padding-top: 16px;
+	&__title {
 		display: flex;
-		justify-content: space-between;
-		border-top: 1px solid $lgray;
+		align-items: center;
+		cursor: pointer;
+		&_drop {
+			.sidemenu__name {
+				position: relative;
+				padding-right: 32px;
+				&:after {
+					content: "";
+					width: 24px;
+					height: 24px;
+					background: url("../images/arrow-icon.svg") center no-repeat;
+					position: absolute;
+					top: 50%;
+					right: 0;
+					z-index: 1;
+					transform: translateY(-50%) rotate(90deg);
+					transition: all .3s linear;
+				}
+				&.active {
+					&:after {
+						transform: translateY(-50%) rotate(-90deg);
+					}
+				}
+			}
+		}
+	}
+	&__icon {
+		background-color: $wh-p;
+		position: relative;
+		z-index: 2;
+		svg {
+			width: 16px;
+			height: 16px;
+			fill: none;
+			stroke: $blue;
+			transition: all .3s linear;
+		}
+	}
+	&__name {
+		flex: 1 1 auto;
+		margin-left: 6px;
+		font-family: $ff;
+		font-size: 14px;
+		font-weight: 600;
+		color: $bl;
+		line-height: $lh;
+		min-width: 150px;
+	}
+	&__dropdown {
+		display: none;
+		padding-left: 24px;
+		padding-top: 8px;
+		li {
+			margin-bottom: 12px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	&__link {
+		display: inline-block;
+		@include text;
+		color: $bl;
+		transition: all .2s linear;
+		&:hover {
+			color: $blue;
+		}
+		&.active {
+			color: $blue;
+		}
 	}
 }
-/*===========/form===========*/
+/*===========/sidemenu========*/
+
+.btn-hide {
+	display: inline-flex;
+	align-items: center;
+	svg {
+		width: 18px;
+		height: 18px;
+		fill: $blue;
+		transform: rotate(180deg);
+		transition: all .4s linear;
+	}
+	span {
+		margin-left: 6px;
+		font-family: $ff;
+		font-size: 12.33px;
+		font-weight: 400;
+		color: $blue;
+		line-height: 1.3;
+		white-space: nowrap;
+	}
+	&.active {
+		svg {
+			transform: rotate(0);
+		}
+		span {
+			display: none;
+		}
+	}
+}
+
+/*===========Table============*/
+.table {
+	background: $wh;
+	border-radius: 6px;
+	overflow: auto;
+	-ms-overflow-style: none;
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+    	width: 0;
+    	height: 0;
+  	}
+  	&_check {
+  		.table__inner {
+  			min-width: 1910px;
+  		}
+  		.table__col {
+  			&:first-child {
+  				width: 40px;
+  			}
+  			&:nth-child(2) {
+  				width: 96px;
+  			}
+  			&:nth-child(3) {
+  				width: 50px;
+  			}
+  			&:nth-child(4) {
+  				width: 50px;
+  			}
+  			&:nth-child(5) {
+  				width: 284px;
+  			}
+  			&:nth-child(6) {
+  				width: 284px;
+  			}
+  			&:nth-child(7) {
+  				width: 284px;
+  			}
+  			&:nth-child(8) {
+  				width: 210px;
+  			}
+  			&:nth-child(9) {
+  				width: 68px;
+  			}
+  			&:nth-child(10) {
+  				width: 140px;
+  			}
+  			&:nth-child(11) {
+  				width: 64px;
+  			}
+  			&:nth-child(12) {
+  				width: 96px;
+  			}
+  			&:nth-child(13) {
+  				width: 64px;
+  			}
+  			&:nth-child(14) {
+  				width: 96px;
+  			}
+  			&:nth-child(15) {
+  				width: 110px;
+  			}
+  		}
+  		.table__content {
+  			.table__row {
+	  			cursor: pointer;
+	  			transition: all .2s linear;
+	  			&:hover {
+	  				border-color: $blue;
+	  				background: rgb(228, 236, 253);
+	  				z-index: 2;
+	  			}
+	  			&.checked {
+	  				border-color: $blue;
+	  				background: rgb(228, 236, 253);
+	  				z-index: 2;
+	  				.table__checkbox {
+	  					background-color: $blue;
+						border-color: $blue;
+						&:after {
+							opacity: 1;
+						}
+	  				}
+	  			}
+	  		}
+  		}
+  	}
+	&__inner {
+		min-width: 400px;
+		padding-bottom: 1px;
+	}
+	&__row {
+		display: flex;
+		border: 1px solid $lgray;
+		margin-bottom: -1px;
+		position: relative;
+		z-index: 1;
+		&:last-child {
+			border-radius: 0 0 6px 6px;
+		}
+		&:nth-child(even) {
+			background: rgb(250, 251, 252);
+		}
+	}
+	&__col {
+		width: 38%;
+		padding: 12px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		&:last-child {
+			width: 24%;
+		}
+	}
+	&__header {
+		background: rgb(247, 247, 250);
+		border-radius: 6px 6px 0 0;
+		.table__row {
+			border-radius: 6px 6px 0 0;
+		}
+	}
+	&__title {
+		font-family: $ff;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: $lh;
+		color: $gray;
+	}
+	&__info {
+		@include text;
+		color: $bl;
+	}
+	&__checkbox {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		border-radius: 2px;
+		border: 1.2px solid $bl;
+		transition: all .2s linear;
+		position: relative;
+		&:after {
+			content: "";
+			width: 14px;
+			height: 14px;
+			background: url("../images/check-icon.svg") center no-repeat;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1;
+			opacity: 0;
+			transition: all .2s linear;
+		}
+		&.active {
+			background-color: $blue;
+			border-color: $blue;
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+}
+/*==========/table============*/
+
+/*========Buttons-table=======*/
+.buttons-table {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__col {
+		margin-right: 16px;
+		display: flex;
+		align-items: center;
+		&:last-child {
+			margin-right: 0;
+		}
+		>* {
+			margin-right: 16px;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}
+/*=======/buttons-table=======*/
 
 /*===========Adaptive==============*/
 @media(max-width: 860px) {
@@ -833,6 +1101,10 @@ body.hidden {
 }
 
 @media(max-width: 760px) {
+	.btn-hide {
+		display: none;
+	}
+
 	.search {
 		flex: 1 1 auto;
 		input {
@@ -856,6 +1128,15 @@ body.hidden {
 	}
 
 	.section {
+		&_page {
+			.section__inner {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+			.section__content {
+				margin-bottom: 16px;
+			}
+		}
 		&__inner {
 			display: block;
 		}
@@ -871,6 +1152,13 @@ body.hidden {
 					position: static;
 				}
 			}
+		}
+	}
+
+	.person {
+		&_page {
+			height: auto;
+			overflow: visible;
 		}
 	}
 }

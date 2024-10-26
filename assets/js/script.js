@@ -101,4 +101,76 @@ $('.form__input-btn').on('click', function(){
 });  
 /*=========/password==============*/
 
+/*==========Sidemenu=============*/
+$(".sidemenu__title_drop").on("click", function() {
+	$(this).find('.sidemenu__name').toggleClass("active");
+	$(this).next('.sidemenu__dropdown').slideToggle();
+	$(".sidemenu__title_drop").not(this).find('.sidemenu__name').removeClass("active");
+	$(".sidemenu__title_drop").not(this).next('.sidemenu__dropdown').slideUp();
 });
+
+$(".btn-hide").on("click", function() {
+	$(this).toggleClass("active");
+	$(".sidemenu").toggleClass("hide");
+	$(".section").toggleClass("hide");
+	$('.sidemenu__name').removeClass("active");
+	$('.sidemenu__dropdown').slideUp();
+	$('.sidemenu__name').fadeToggle();
+});
+
+$(".sidemenu__icon").on("click", function() {
+	$(".sidemenu").removeClass("hide");
+	$(".section").removeClass("hide");
+	$('.sidemenu__name').fadeIn();
+	$(".btn-hide").removeClass("active");
+});
+/*=========/sidemenu==============*/
+
+/*==========Table (check)=============*/
+$(".table__content .table__row").on("click", function() {
+	$(this).toggleClass("checked");
+	$(".table__row").not(this).removeClass("checked");
+});
+/*=========/table (check)==============*/
+
+/*===============Popup=================*/
+	$(".open-popup").on("click", function (event) {
+	    name_pop = $(this).attr('data-popup');
+	    event.preventDefault();
+	    $(".popup."+name_pop).fadeIn(333);
+	    $(".popup."+name_pop+" .popup__inner").fadeIn(333);
+	    $('body').addClass("hidden");
+	});
+	$(".popup__close,  .closex").on("click", function (event) {
+	    event.preventDefault();
+	    $(".popup").fadeOut(333);
+	    $(".popup__inner").fadeOut(333);
+	    $('body').removeClass("hidden");
+	});
+/*==============/popup=================*/
+});
+
+/*=========Scroll=========*/
+  window.onload = function () {
+          var scr = $(".table");
+          scr.mousedown(function () {
+              var startX = this.scrollLeft + event.pageX;
+              var startY = this.scrollTop + event.pageY;
+
+              scr.mousemove(function () {
+
+                  this.scrollLeft = startX - event.pageX;
+
+                  this.scrollTop = startY - event.pageY;
+
+                  return false;
+
+              });
+
+          });
+
+          $(window).mouseup(function () {
+              scr.off("mousemove");
+          });
+      }
+  /*=========/scroll=========*/
