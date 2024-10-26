@@ -382,12 +382,17 @@
     width: 100%; }
   .form__inner .form__buttons {
     width: 100%; }
+  .form__inner .form__item_br {
+    margin-right: 10px; }
 
 .form__item.error input {
   background-color: #FBD1D9; }
 
 .form__item.error .form__error {
   display: block; }
+
+.form__item.error .selectcheckbox__select {
+  background-color: #FBD1D9; }
 
 .form__buttons {
   display: flex; }
@@ -407,7 +412,7 @@
 .form__input input, .form__input textarea {
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 11px 12px;
   border-radius: 4px;
   background: #f7f7fa;
   border: 1px solid #f7f7fa;
@@ -516,6 +521,7 @@
         display: inline-block;
         margin-right: 5px;
         width: 14px;
+        flex: 0 0 14px;
         height: 14px;
         border-radius: 50%;
         border: 1.2px solid #114FD3;
@@ -564,6 +570,7 @@
     display: inline-block;
     margin-right: 5px;
     width: 14px;
+    flex: 0 0 14px;
     height: 14px;
     border-radius: 2px;
     border: 1.2px solid #0B2136;
@@ -597,6 +604,105 @@
       opacity: 1; }
 
 /*==========/checkbox========*/
+/*==========Selectcheckbox=========*/
+.selectcheckbox {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  .selectcheckbox__select {
+    padding-right: 36px;
+    width: 100%;
+    transition: all .2s linear;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #f7f7fa;
+    padding: 12px 36px 12px 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px; }
+    .selectcheckbox__select span {
+      font-family: "Lato", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.1428;
+      color: #0B2136; }
+    .selectcheckbox__select:after {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background: url("../images/arrow-icon.svg") center no-repeat;
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      z-index: 1;
+      transform: translateY(-50%) rotate(90deg);
+      transition: all .3s linear; }
+  .selectcheckbox__option {
+    display: flex;
+    align-items: center;
+    position: relative; }
+    .selectcheckbox__option span {
+      font-family: "Lato", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.1428;
+      color: #0B2136; }
+  .selectcheckbox__dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 4px;
+    border: 1.2px solid #d6d8e7;
+    max-height: 200px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none; }
+    .selectcheckbox__dropdown ::-webkit-scrollbar {
+      width: 0;
+      height: 0; }
+  .selectcheckbox__inner {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px; }
+  .selectcheckbox__description {
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.1428;
+    color: #697582;
+    border-bottom: 1.2px solid #d6d8e7;
+    padding: 11.5px 36px 11.5px 12px;
+    position: relative; }
+    .selectcheckbox__description:after {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background: url("../images/arrow-icon.svg") center no-repeat;
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      z-index: 1;
+      transform: translateY(-50%) rotate(-90deg);
+      transition: all .3s linear; }
+  .selectcheckbox__option {
+    padding: 11.5px 0px;
+    transition: all .2s linear;
+    border-bottom: 1.2px solid #d6d8e7; }
+    .selectcheckbox__option:last-child {
+      border-bottom: none;
+      border-radius: 0 0 4px 4px; }
+    .selectcheckbox__option:hover span {
+      color: #114FD3; }
+
+/*=========/selectcheckbox=========*/
 /*===========Adaptive==============*/
 @media (max-width: 540px) {
   .form__inner {
@@ -604,6 +710,8 @@
     .form__inner > * {
       width: 100%;
       margin-left: 0; }
+    .form__inner .form__item_br {
+      margin-right: 0px; }
   .form__buttons_wrap {
     display: block; }
     .form__buttons_wrap > * {
@@ -1465,7 +1573,6 @@ body.hidden {
 /*===========Table============*/
 .table {
   background: #ffffff;
-  border-radius: 6px;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none; }
@@ -1507,10 +1614,11 @@ body.hidden {
   .table_check .table__content .table__row {
     cursor: pointer;
     transition: all .2s linear; }
-    .table_check .table__content .table__row:hover {
-      border-color: #114FD3;
-      background: #e4ecfd;
-      z-index: 2; }
+    @media (min-width: 1025px) {
+      .table_check .table__content .table__row:hover {
+        border-color: #114FD3;
+        background: #e4ecfd;
+        z-index: 2; } }
     .table_check .table__content .table__row.checked {
       border-color: #114FD3;
       background: #e4ecfd;
@@ -1586,20 +1694,28 @@ body.hidden {
 
 /*==========/table============*/
 /*========Buttons-table=======*/
-.buttons-table {
+.buttons-table_string {
+  display: none; }
+
+.buttons-table__inner {
   display: flex;
-  align-items: center;
-  justify-content: space-between; }
-  .buttons-table__col {
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 16px; }
+
+.buttons-table__col {
+  margin-right: 16px;
+  margin-bottom: -16px;
+  display: flex;
+  flex-wrap: wrap; }
+  .buttons-table__col:last-child {
+    margin-right: 0; }
+  .buttons-table__col > * {
     margin-right: 16px;
-    display: flex;
-    align-items: center; }
-    .buttons-table__col:last-child {
+    margin-bottom: 16px;
+    white-space: nowrap; }
+    .buttons-table__col > *:last-child {
       margin-right: 0; }
-    .buttons-table__col > * {
-      margin-right: 16px; }
-      .buttons-table__col > *:last-child {
-        margin-right: 0; }
 
 /*=======/buttons-table=======*/
 /*===========Delete============*/
@@ -1683,7 +1799,17 @@ body.hidden {
   .person__photo {
     margin-bottom: 16px; }
   .person__info {
-    margin-right: 0; } }
+    margin-right: 0; }
+  .buttons-table__inner {
+    display: block; }
+    .buttons-table__inner > *:last-child {
+      width: 100%; }
+  .buttons-table__col {
+    margin-bottom: 0;
+    margin-right: 0; }
+    .buttons-table__col > * {
+      width: 100%;
+      margin-right: 0; } }
 
 @media (max-width: 360px) {
   .person__row {

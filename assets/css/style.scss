@@ -906,7 +906,6 @@ body.hidden {
 /*===========Table============*/
 .table {
 	background: $wh;
-	border-radius: 6px;
 	overflow: auto;
 	-ms-overflow-style: none;
     scrollbar-width: none;
@@ -970,9 +969,11 @@ body.hidden {
 	  			cursor: pointer;
 	  			transition: all .2s linear;
 	  			&:hover {
-	  				border-color: $blue;
-	  				background: rgb(228, 236, 253);
-	  				z-index: 2;
+	  				@media(min-width: 1025px) {
+	  					border-color: $blue;
+	  					background: rgb(228, 236, 253);
+	  					z-index: 2;
+	  				}
 	  			}
 	  			&.checked {
 	  				border-color: $blue;
@@ -1068,18 +1069,27 @@ body.hidden {
 
 /*========Buttons-table=======*/
 .buttons-table {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	&_string {
+		display: none;
+	}
+	&__inner {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		padding-bottom: 16px;
+	}
 	&__col {
 		margin-right: 16px;
+		margin-bottom: -16px;
 		display: flex;
-		align-items: center;
+		flex-wrap: wrap;
 		&:last-child {
 			margin-right: 0;
 		}
 		>* {
 			margin-right: 16px;
+			margin-bottom: 16px;
+			white-space: nowrap;
 			&:last-child {
 				margin-right: 0;
 			}
@@ -1217,6 +1227,25 @@ body.hidden {
 		}
 		&__info {
 			margin-right: 0;
+		}
+	}
+
+	.buttons-table {
+		&__inner {
+			display: block;
+			>* {
+				&:last-child {
+					width: 100%;
+				}
+			}
+		}
+		&__col {
+			margin-bottom: 0;
+			margin-right: 0;
+			>* {
+				width: 100%;
+				margin-right: 0;
+			}
 		}
 	}
 }

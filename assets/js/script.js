@@ -127,11 +127,36 @@ $(".sidemenu__icon").on("click", function() {
 /*=========/sidemenu==============*/
 
 /*==========Table (check)=============*/
-$(".table__content .table__row").on("click", function() {
-	$(this).toggleClass("checked");
-	$(".table__row").not(this).removeClass("checked");
+$(".table_check .table__content .table__row").on("click", function() {
+	if ($(this).hasClass("checked")){
+        $(this).removeClass("checked");
+        $(".buttons-table_all").fadeIn();
+		$(".buttons-table_string").hide();
+    }
+    else {
+    	$(this).toggleClass("checked");
+		$(".table__row").not(this).removeClass("checked");
+		$(".buttons-table_all").hide();
+		$(".buttons-table_string").fadeIn();
+    }
 });
 /*=========/table (check)==============*/
+
+/*======Selectcheckbox=============*/
+$(".selectcheckbox").on("click", function(event) {
+  event.preventDefault();
+    $(this).find('.selectcheckbox__dropdown').slideToggle(333);
+    //$(this).find('.selectcheckbox__select').toggleClass('active');
+    $(".selectcheckbox").not(this).find('.selectcheckbox__dropdown').slideUp(333);
+    //$(this).find('.selectcheckbox__select').toggleClass('active');
+});
+$(".selectcheckbox__option").on("click", function(event) {
+  event.preventDefault();
+  $(this).parent().find(".selectcheckbox__option").removeClass('selected');
+  $(this).parent().parent().parent().find('.selectcheckbox__select').html($(this).html());
+  $(this).addClass('selected');
+});
+/*==========/selectcheckbox=========*/
 
 /*===============Popup=================*/
 $(".open-popup").on("click", function (event) {
