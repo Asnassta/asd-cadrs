@@ -1063,8 +1063,12 @@ body.hidden {
     transform: translateY(-50%); }
 
 .dropbtn {
+  cursor: pointer;
   position: relative;
   z-index: 10; }
+  .dropbtn_top .dropbtn__dropdown {
+    top: auto;
+    bottom: calc(100% + 8px); }
   .dropbtn__dropdown {
     display: none;
     background: #edf2fe;
@@ -1262,21 +1266,39 @@ body.hidden {
   white-space: nowrap;
   overflow: hidden; }
 
+.workers .hint {
+  bottom: calc(100% - 4px);
+  left: 8px; }
+
 /*==========/workers===========*/
 /*===========Hint===========*/
+.show-hint {
+  cursor: pointer;
+  position: relative; }
+
 .hint {
   display: none;
   position: absolute;
-  bottom: calc(100% - 12px);
-  left: 8px;
+  bottom: 100%;
+  left: 0;
   z-index: 20;
-  padding: 0 0 16px 5px; }
+  padding: 8px; }
+  .hint_bottom {
+    bottom: auto;
+    top: 100%; }
+    .hint_bottom .hint__box {
+      border-radius: 0 20px 20px 20px; }
+  .hint_right {
+    left: auto;
+    right: 0; }
+    .hint_right .hint__box {
+      border-radius: 20px 0px 20px 20px; }
   .hint__box {
     box-shadow: 0px 24px 48px 0px rgba(225, 231, 245, 0.4), 0px 1px 4px 0px #e3eafb;
     background: #ffeec3;
     border-radius: 20px 20px 20px 0px;
     width: 392px;
-    max-width: 90vw;
+    max-width: 80vw;
     padding: 20px; }
   .hint__title {
     font-family: "Lato", sans-serif;
@@ -1329,7 +1351,8 @@ body.hidden {
     background-color: #ffffff;
     border-radius: 10px;
     padding-bottom: 0;
-    display: flex; }
+    display: flex;
+    align-items: flex-start; }
   .person__info {
     flex: 1 1 auto;
     margin-right: 16px; }
@@ -1818,6 +1841,9 @@ body.hidden {
     align-items: flex-start; }
   .person__link {
     margin-right: 0;
-    margin-bottom: 12px; } }
+    margin-bottom: 12px; }
+  .dropbtn_top .dropbtn__dropdown {
+    right: auto;
+    left: 0; } }
 
 /*===========/adaptive==============*/
