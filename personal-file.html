@@ -2346,7 +2346,7 @@
 										</svg>
 										<span>Редактировать</span>
 									</a>
-									<a href="#" class="btn-transparent">
+									<a href="#" class="btn-transparent open-popup" data-popup="popup-delete">
 										<svg>
 											<use xlink:href="#trash-icon"></use>
 										</svg>
@@ -2624,6 +2624,35 @@
     	    </div>
 		</div>
 	</div><!--/popup-edit-->
+
+	<div class="popup popup-delete">
+		<div class="closex"></div>
+		<div class="popup__inner">
+			<div class="popup__box">
+				<div class="popup__content">
+					<div class="popup__header popup__header_right">
+						<span class="popup__close">
+							<svg>
+								<use xlink:href="#close-icon"></use>
+							</svg>
+						</span>
+					</div>
+					<div class="delete">
+						<div class="delete__icon">
+							<img src="assets/images/warning.svg" alt="">
+						</div>
+						<h5 class="title">Вы уверены что хотите удалить запись?</h5>
+						<div class="delete__text">Текст описания если нужно для ошибки или сообщения</div>
+						<a href="#" class="link">ссылка если нужно</a>
+						<div class="delete__buttons">
+							<button type="reset" class="btn-transparent close-popup">Отмена</button>
+							<button type="submit" class="btn">Сохранить</button>
+						</div> 
+					</div><!--/delete-->
+				</div>
+    	    </div>
+		</div>
+	</div><!--/popup-delete-->
 
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/script.js"></script>
