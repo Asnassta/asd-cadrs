@@ -86,6 +86,11 @@
 	.btn-transparent {
 		padding: 11px;
 	}
+	.table__col {
+		&:last-child {
+			width: 24%;
+		}
+	}
 	&.popup-delete {
 		.popup__inner {
 			top: 40%;

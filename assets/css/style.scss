@@ -947,53 +947,10 @@ body.hidden {
   	&_check {
   		.table__inner {
   			min-width: 1910px;
+  			display: table;
   		}
   		.table__col {
-  			&:first-child {
-  				width: 40px;
-  			}
-  			&:nth-child(2) {
-  				width: 96px;
-  			}
-  			&:nth-child(3) {
-  				width: 50px;
-  			}
-  			&:nth-child(4) {
-  				width: 50px;
-  			}
-  			&:nth-child(5) {
-  				width: 284px;
-  			}
-  			&:nth-child(6) {
-  				width: 284px;
-  			}
-  			&:nth-child(7) {
-  				width: 284px;
-  			}
-  			&:nth-child(8) {
-  				width: 210px;
-  			}
-  			&:nth-child(9) {
-  				width: 68px;
-  			}
-  			&:nth-child(10) {
-  				width: 140px;
-  			}
-  			&:nth-child(11) {
-  				width: 64px;
-  			}
-  			&:nth-child(12) {
-  				width: 96px;
-  			}
-  			&:nth-child(13) {
-  				width: 64px;
-  			}
-  			&:nth-child(14) {
-  				width: 96px;
-  			}
-  			&:nth-child(15) {
-  				width: 110px;
-  			}
+  			flex: 0 0 auto;
   		}
   		.table__content {
   			.table__row {
@@ -1044,8 +1001,23 @@ body.hidden {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		&:last-child {
-			width: 24%;
+		&_xxs {
+			width: 40px;
+		}
+		&_xs {
+			width: 60px;
+		}
+		&_s {
+			width: 100px;
+		}
+		&_m {
+			width: 140px;
+		}
+		&_l {
+			width: 280px;
+		}
+		&_xl {
+			width: 400px;
 		}
 	}
 	&__header {
