@@ -1605,6 +1605,9 @@ body.hidden {
   .table ::-webkit-scrollbar {
     width: 0;
     height: 0; }
+  .table_check .table__header .table__row {
+    z-index: 3;
+    border-bottom: none; }
   .table_check .table__inner {
     min-width: 1910px;
     display: table; }
@@ -1617,7 +1620,7 @@ body.hidden {
       .table_check .table__content .table__row:hover {
         border-color: #114FD3;
         background: #e4ecfd;
-        z-index: 2; } }
+        z-index: 4; } }
     .table_check .table__content .table__row.checked {
       border-color: #114FD3;
       background: #e4ecfd;

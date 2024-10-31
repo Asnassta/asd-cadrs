@@ -945,6 +945,12 @@ body.hidden {
     	height: 0;
   	}
   	&_check {
+  		.table__header {
+	  		.table__row {
+	  			z-index: 3;
+	  			border-bottom: none;
+	  		}
+  		}
   		.table__inner {
   			min-width: 1910px;
   			display: table;
@@ -960,7 +966,7 @@ body.hidden {
 	  				@media(min-width: 1025px) {
 	  					border-color: $blue;
 	  					background: rgb(228, 236, 253);
-	  					z-index: 2;
+	  					z-index: 4;
 	  				}
 	  			}
 	  			&.checked {
